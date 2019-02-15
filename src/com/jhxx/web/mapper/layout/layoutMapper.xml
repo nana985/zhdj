@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jhxx.web.mapper.layout.LayoutMapper">
+
+	<!-- 加载表格头字段信息 -->
+	<select id="getTableHeader" parameterType="map" resultType="com.jhxx.web.model.layout.Querycolumn">
+		select prop,tablename from d_querycolumn where queryid=(select queryid from d_query where soptid=#{smallId}) and targetname=#{targetName} order by querycolumnid,rorder
+	</select>
+</mapper>

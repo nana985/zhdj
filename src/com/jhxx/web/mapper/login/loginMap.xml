@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+ <!-- namespace命名空间 对应接口的名称 -->
+ 
+<mapper namespace="com.jhxx.web.mapper.login.LoginDao">
+	
+  <sql id="Base_Column_List" >
+    userid, deptid, unum, psd, uname, sex, phone, status, roleid, remark, unitid
+  </sql>
+  
+  <!-- 登录 -->
+  <select id="findByUserNum" parameterType="String" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List" /> from d_user 
+  			where unum = #{unum,jdbcType=VARCHAR} and status = 1
+  </select>
+  
+  <resultMap id="BaseResultMap" type="com.jhxx.web.model.user.User" >
+    <id column="USERID" property="userId" jdbcType="DECIMAL" />
+    <result column="DEPTID" property="deptid" jdbcType="DECIMAL" />
+    <result column="UNUM" property="unum" jdbcType="VARCHAR" />
+    <result column="PSD" property="psd" jdbcType="VARCHAR" />
+    <result column="UNAME" property="uname" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="DECIMAL" />
+    <result column="ROLEID" property="roleid" jdbcType="DECIMAL" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="UNITID" property="unitid" jdbcType="DECIMAL" />
+  </resultMap>
+</mapper>

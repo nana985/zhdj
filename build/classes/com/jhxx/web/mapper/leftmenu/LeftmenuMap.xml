@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+ <!-- namespace命名空间 对应接口的名称 -->
+ 
+<mapper namespace="com.jhxx.web.mapper.leftmenu.LeftmenuDao">
+	
+  <!-- 获取导航菜单 -->
+	<select id="selectLeftmenu"  resultType="com.jhxx.web.model.leftmenu.Leftmenu">
+		 <!-- select * from d_bigopt where menuid in(
+			select menuid from dc_smallopt where smallid in(
+			select smallid from dc_role_smallopt where roleid in(
+			select roleid from dc_userinfo where usernum = #{usernum}))) order by menuid -->
+		select boptid,boptname,bopturl from d_bigopt order by boptsort 
+	</select> 
+	
+	<select id="selectLeftmenuByboptid"  resultType="com.jhxx.web.model.leftmenu.Leftmenu">
+		<!-- select * from dc_smallopt where smallid in(
+		select smallid from dc_role_smallopt where roleid in(
+		select roleid from dc_userinfo where usernum = #{usernum})) and menuid=#{menuid} -->
+		select soptid,soptname,sopturl from d_smlopt where boptid = #{boptid} order by soptsort 
+	</select>
+  
+</mapper>
